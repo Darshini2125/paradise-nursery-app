@@ -3,15 +3,15 @@ import "./AboutUs.css";
 
 const AboutUs = () => {
   return (
-    <div className="about-container">
+    <section className="about-container">
       <div className="about-overlay">
         <h1>About Paradise Nursery</h1>
 
         <p>
           Welcome to <strong>Paradise Nursery</strong>, where nature meets
           beauty. We are passionate about providing high-quality indoor and
-          outdoor plants that bring freshness, positivity, and elegance into
-          every home and workspace.
+          outdoor plants that bring freshness, positivity, and elegance to every
+          home and workspace.
         </p>
 
         <p>
@@ -22,16 +22,17 @@ const AboutUs = () => {
         </p>
 
         <p>
-          At Paradise Nursery, customer satisfaction is our priority. We are
-          committed to offering healthy plants, affordable prices, secure
-          shopping, and fast delivery to help you create your own green paradise.
+          At Paradise Nursery, customer satisfaction is our highest priority.
+          We are committed to offering healthy plants, affordable prices,
+          secure shopping, and fast delivery so you can create your own green
+          paradise.
         </p>
 
         <h2>Why Choose Us?</h2>
 
         <ul>
           <li>🌿 Premium quality healthy plants</li>
-          <li>🌼 Wide variety of indoor & outdoor plants</li>
+          <li>🌼 Wide variety of indoor and outdoor plants</li>
           <li>🚚 Fast and reliable delivery</li>
           <li>💚 Affordable prices</li>
           <li>⭐ Excellent customer support</li>
@@ -42,7 +43,7 @@ const AboutUs = () => {
           world greener—one plant at a time.
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 
