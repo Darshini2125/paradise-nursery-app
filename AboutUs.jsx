@@ -1,7 +1,7 @@
 import React from "react";
 import "./AboutUs.css";
 
-const AboutUs = () => {
+function AboutUs() {
   return (
     <section className="about-container">
       <div className="about-overlay">
@@ -31,11 +31,11 @@ const AboutUs = () => {
         <h2>Why Choose Us?</h2>
 
         <ul>
-          <li>🌿 Premium quality healthy plants</li>
-          <li>🌼 Wide variety of indoor and outdoor plants</li>
-          <li>🚚 Fast and reliable delivery</li>
-          <li>💚 Affordable prices</li>
-          <li>⭐ Excellent customer support</li>
+          <li>Premium quality healthy plants</li>
+          <li>Wide variety of indoor and outdoor plants</li>
+          <li>Fast and reliable delivery</li>
+          <li>Affordable prices</li>
+          <li>Excellent customer support</li>
         </ul>
 
         <p>
@@ -45,6 +45,6 @@ const AboutUs = () => {
       </div>
     </section>
   );
-};
+}
 
 export default AboutUs;
