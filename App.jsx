@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -24,13 +25,14 @@ function App() {
           <p>
             Discover a wide collection of beautiful indoor and outdoor plants
             that add freshness, beauty, and positive energy to your living
-            space. Shop healthy plants with affordable prices and fast
-            delivery.
+            space. Shop healthy plants at affordable prices with fast delivery.
           </p>
 
-          <button className="get-started-btn">
-            Get Started
-          </button>
+          <Link to="/products">
+            <button className="get-started-btn">
+              Get Started
+            </button>
+          </Link>
         </div>
       </div>
     </div>
