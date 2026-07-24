@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import AboutUs from "./AboutUs";
 import ProductList from "./ProductList";
 import CartItem from "./CartItem";
 import "./App.css";
@@ -8,20 +7,19 @@ import "./App.css";
 function LandingPage() {
   return (
     <div className="landing-page">
-      <div className="landing-content">
+      <div className="overlay">
         <h1>Paradise Nursery</h1>
-        <h2>Bringing Nature Closer to You</h2>
+
+        <h2>Bring Nature Into Your Home</h2>
 
         <p>
-          Welcome to Paradise Nursery, your one-stop destination for healthy,
-          beautiful indoor and outdoor plants. Discover a wide variety of
-          plants that make your home greener, fresher, and more vibrant.
+          Welcome to Paradise Nursery! We offer a beautiful collection of
+          indoor and outdoor plants that make your home greener, healthier,
+          and more peaceful.
         </p>
 
         <Link to="/products">
-          <button className="get-started-btn">
-            Get Started
-          </button>
+          <button className="start-btn">Get Started</button>
         </Link>
       </div>
     </div>
@@ -33,7 +31,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/about" element={<AboutUs />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/cart" element={<CartItem />} />
       </Routes>
@@ -42,5 +39,3 @@ function App() {
 }
 
 export default App;
-
-       
