@@ -1,48 +1,27 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updateQuantity } from "./redux/CartSlice";
-import { Link } from "react-router-dom";
 
-function CartItem() {
-  const dispatch = useDispatch();
-
-  const cartItems = useSelector((state) => state.cart.items);
-
-  const increaseQuantity = (item) => {
-    dispatch(
-      updateQuantity({
-        id: item.id,
-        quantity: item.quantity + 1,
-      })
-    );
-  };
-
-  const decreaseQuantity = (item) => {
-    if (item.quantity > 1) {
-      dispatch(
-        updateQuantity({
-          id: item.id,
-          quantity: item.quantity - 1,
-        })
-      );
-    } else {
-      dispatch(removeItem(item.id));
-    }
-  };
-
+const CartItem = ({ cartItems = [], updateQuantity, removeItem }) => {
   const totalAmount = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>Shopping Cart</h1>
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
-      <h2>Total Cart Amount: ₹{totalAmount}</h2>
+  return (
+    <div style={{ padding: "30px", maxWidth: "1000px", margin: "0 auto" }}>
+      <h1 style={{ textAlign: "center", color: "#2e7d32" }}>
+        🛒 Shopping Cart
+      </h1>
+
+      <h3>Total Items: {totalItems}</h3>
+      <h3>Total Cost: ₹{totalAmount}</h3>
 
       {cartItems.length === 0 ? (
-        <h3>Your cart is empty.</h3>
+        <h2>Your cart is empty.</h2>
       ) : (
         cartItems.map((item) => (
           <div
@@ -51,57 +30,103 @@ function CartItem() {
               display: "flex",
               alignItems: "center",
               gap: "20px",
-              marginBottom: "20px",
               border: "1px solid #ddd",
-              padding: "15px",
               borderRadius: "10px",
+              padding: "15px",
+              marginBottom: "20px",
+              background: "#fff",
             }}
           >
             <img
               src={item.image}
               alt={item.name}
-              width="120"
-              height="120"
+              style={{
+                width: "120px",
+                height: "120px",
+                objectFit: "cover",
+                borderRadius: "10px",
+              }}
             />
 
             <div style={{ flex: 1 }}>
-              <h3>{item.name}</h3>
-
-              <p>Unit Price: ₹{item.price}</p>
-
+              <h2>{item.name}</h2>
+              <p>Price: ₹{item.price}</p>
               <p>Quantity: {item.quantity}</p>
 
-              <p>
-                Total Cost: ₹{item.price * item.quantity}
-              </p>
-
-              <button onClick={() => decreaseQuantity(item)}>
-                −
+              <button
+                onClick={() =>
+                  updateQuantity(item.id, item.quantity - 1)
+                }
+                style={{
+                  marginRight: "10px",
+                  padding: "8px 15px",
+                  cursor: "pointer",
+                }}
+              >
+                -
               </button>
 
               <button
-                onClick={() => increaseQuantity(item)}
-                style={{ marginLeft: "10px" }}
+                onClick={() =>
+                  updateQuantity(item.id, item.quantity + 1)
+                }
+                style={{
+                  marginRight: "10px",
+                  padding: "8px 15px",
+                  cursor: "pointer",
+                }}
               >
                 +
               </button>
 
               <button
-                onClick={() => dispatch(removeItem(item.id))}
-                style={{ marginLeft: "10px" }}
+                onClick={() => removeItem(item.id)}
+                style={{
+                  background: "red",
+                  color: "#fff",
+                  border: "none",
+                  padding: "8px 15px",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                }}
               >
-                Delete
+                Remove
               </button>
             </div>
           </div>
         ))
       )}
 
-      <Link to="/products">
-        <button>Continue Shopping</button>
-      </Link>
+      <div style={{ marginTop: "30px", textAlign: "center" }}>
+        <button
+          style={{
+            padding: "12px 25px",
+            marginRight: "15px",
+            background: "#2e7d32",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Continue Shopping
+        </button>
+
+        <button
+          style={{
+            padding: "12px 25px",
+            background: "#1976d2",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default CartItem;
