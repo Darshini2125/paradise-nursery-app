@@ -10,17 +10,17 @@ const cartSlice = createSlice({
   reducers: {
     // Add item to cart
     addItem: (state, action) => {
-      const product = action.payload;
+      const item = action.payload;
 
       const existingItem = state.items.find(
-        (item) => item.id === product.id
+        (product) => product.id === item.id
       );
 
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
         state.items.push({
-          ...product,
+          ...item,
           quantity: 1,
         });
       }
@@ -33,12 +33,12 @@ const cartSlice = createSlice({
       );
     },
 
-    // Update item quantity
+    // Update quantity
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload;
 
       const item = state.items.find(
-        (item) => item.id === id
+        (product) => product.id === id
       );
 
       if (item) {
@@ -46,7 +46,7 @@ const cartSlice = createSlice({
           item.quantity = quantity;
         } else {
           state.items = state.items.filter(
-            (item) => item.id !== id
+            (product) => product.id !== id
           );
         }
       }
