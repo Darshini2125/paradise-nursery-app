@@ -1,42 +1,46 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import AboutUs from "./AboutUs";
+import ProductList from "./ProductList";
+import CartItem from "./CartItem";
 import "./App.css";
 
-function App() {
+function LandingPage() {
   return (
-    <div className="App">
-      <div className="landing-page">
-        <nav className="navbar">
-          <h2 className="logo">🌿 Paradise Nursery</h2>
+    <div className="landing-page">
+      <div className="landing-content">
+        <h1>Paradise Nursery</h1>
+        <h2>Bringing Nature Closer to You</h2>
 
-          <ul className="nav-links">
-            <li>Home</li>
-            <li>Plants</li>
-            <li>About</li>
-            <li>Contact</li>
-          </ul>
-        </nav>
+        <p>
+          Welcome to Paradise Nursery, your one-stop destination for healthy,
+          beautiful indoor and outdoor plants. Discover a wide variety of
+          plants that make your home greener, fresher, and more vibrant.
+        </p>
 
-        <div className="landing-content">
-          <h1>Paradise Nursery</h1>
-
-          <h2>Bring Nature Into Your Home</h2>
-
-          <p>
-            Discover a wide collection of beautiful indoor and outdoor plants
-            that add freshness, beauty, and positive energy to your living
-            space. Shop healthy plants at affordable prices with fast delivery.
-          </p>
-
-          <Link to="/products">
-            <button className="get-started-btn">
-              Get Started
-            </button>
-          </Link>
-        </div>
+        <Link to="/products">
+          <button className="get-started-btn">
+            Get Started
+          </button>
+        </Link>
       </div>
     </div>
   );
 }
 
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/cart" element={<CartItem />} />
+      </Routes>
+    </Router>
+  );
+}
+
 export default App;
+
+       
