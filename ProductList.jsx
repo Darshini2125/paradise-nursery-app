@@ -1,115 +1,88 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../redux/cartSlice";
+import { addItem } from "./redux/CartSlice";
 import { Link } from "react-router-dom";
 
 const plants = [
+  // Indoor Plants
   {
     id: 1,
     name: "Snake Plant",
     price: 250,
     category: "Indoor Plants",
-    image: "https://images.unsplash.com/photo-1545241047-6083a3684587?w=400",
-    description: "Air purifying indoor plant."
+    image: "https://images.unsplash.com/photo-1545241047-6083a368458?w=500",
   },
   {
     id: 2,
     name: "Peace Lily",
-    price: 350,
+    price: 300,
     category: "Indoor Plants",
-    image: "https://images.unsplash.com/photo-1463320726281-696a485928c7?w=400",
-    description: "Beautiful flowering indoor plant."
+    image: "https://images.unsplash.com/photo-1463320726281-696a485928c7?w=500",
   },
+
+  // Succulents
   {
     id: 3,
     name: "Aloe Vera",
     price: 180,
-    category: "Medicinal Plants",
-    image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400",
-    description: "Medicinal succulent plant."
+    category: "Succulents",
+    image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=500",
   },
   {
     id: 4,
-    name: "Tulsi",
-    price: 120,
-    category: "Medicinal Plants",
-    image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=400",
-    description: "Holy basil with medicinal benefits."
+    name: "Jade Plant",
+    price: 220,
+    category: "Succulents",
+    image: "https://images.unsplash.com/photo-1483794344563-d27a8d18014e?w=500",
   },
+
+  // Flowering Plants
   {
     id: 5,
     name: "Rose",
-    price: 220,
+    price: 350,
     category: "Flowering Plants",
-    image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400",
-    description: "Beautiful flowering rose plant."
+    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500",
   },
   {
     id: 6,
-    name: "Jasmine",
-    price: 200,
+    name: "Hibiscus",
+    price: 280,
     category: "Flowering Plants",
-    image: "https://images.unsplash.com/photo-1468327768560-75b778cbb551?w=400",
-    description: "Fragrant jasmine plant."
-  }
+    image: "https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?w=500",
+  },
 ];
 
-const ProductList = () => {
+function ProductList() {
   const dispatch = useDispatch();
-  const [addedItems, setAddedItems] = useState({});
+  const [addedItems, setAddedItems] = useState([]);
 
-  const handleAddToCart = (plant) => {
+  const handleAdd = (plant) => {
     dispatch(addItem(plant));
-    setAddedItems((prev) => ({
-      ...prev,
-      [plant.id]: true
-    }));
+    setAddedItems([...addedItems, plant.id]);
   };
 
-  const categories = [...new Set(plants.map((plant) => plant.category))];
+  const categories = [...new Set(plants.map((p) => p.category))];
 
   return (
     <div style={{ padding: "20px" }}>
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "30px"
-        }}
-      >
-        <h1>Paradise Nursery</h1>
+      <h1 style={{ textAlign: "center" }}>Paradise Nursery</h1>
 
-        <Link
-          to="/cart"
-          style={{
-            textDecoration: "none",
-            background: "green",
-            color: "white",
-            padding: "10px 20px",
-            borderRadius: "8px"
-          }}
-        >
-          🛒 Cart
+      <div style={{ textAlign: "right", marginBottom: "20px" }}>
+        <Link to="/cart">
+          <button>🛒 View Cart</button>
         </Link>
-      </header>
+      </div>
 
       {categories.map((category) => (
         <div key={category}>
-          <h2
-            style={{
-              marginTop: "30px",
-              color: "#2e7d32"
-            }}
-          >
-            {category}
-          </h2>
+          <h2>{category}</h2>
 
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
-              gap: "20px"
+              display: "flex",
+              gap: "20px",
+              flexWrap: "wrap",
             }}
           >
             {plants
@@ -118,47 +91,33 @@ const ProductList = () => {
                 <div
                   key={plant.id}
                   style={{
-                    border: "1px solid #ddd",
+                    width: "220px",
+                    border: "1px solid #ccc",
                     borderRadius: "10px",
                     padding: "15px",
                     textAlign: "center",
-                    boxShadow: "0 3px 8px rgba(0,0,0,0.1)"
                   }}
                 >
                   <img
                     src={plant.image}
                     alt={plant.name}
                     style={{
-                      width: "100%",
-                      height: "220px",
+                      width: "180px",
+                      height: "180px",
                       objectFit: "cover",
-                      borderRadius: "8px"
+                      borderRadius: "8px",
                     }}
                   />
 
                   <h3>{plant.name}</h3>
 
-                  <p>{plant.description}</p>
-
-                  <h4>₹{plant.price}</h4>
+                  <p>₹{plant.price}</p>
 
                   <button
-                    onClick={() => handleAddToCart(plant)}
-                    disabled={addedItems[plant.id]}
-                    style={{
-                      padding: "10px 20px",
-                      border: "none",
-                      borderRadius: "5px",
-                      background: addedItems[plant.id]
-                        ? "gray"
-                        : "#4CAF50",
-                      color: "white",
-                      cursor: addedItems[plant.id]
-                        ? "not-allowed"
-                        : "pointer"
-                    }}
+                    onClick={() => handleAdd(plant)}
+                    disabled={addedItems.includes(plant.id)}
                   >
-                    {addedItems[plant.id]
+                    {addedItems.includes(plant.id)
                       ? "Added to Cart"
                       : "Add to Cart"}
                   </button>
@@ -169,6 +128,6 @@ const ProductList = () => {
       ))}
     </div>
   );
-};
+}
 
 export default ProductList;
