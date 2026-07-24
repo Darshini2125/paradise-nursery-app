@@ -13,7 +13,7 @@ const cartSlice = createSlice({
       const item = action.payload;
 
       const existingItem = state.items.find(
-        (product) => product.id === item.id
+        (cartItem) => cartItem.id === item.id
       );
 
       if (existingItem) {
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
       const { id, quantity } = action.payload;
 
       const item = state.items.find(
-        (product) => product.id === id
+        (cartItem) => cartItem.id === id
       );
 
       if (item) {
@@ -46,7 +46,7 @@ const cartSlice = createSlice({
           item.quantity = quantity;
         } else {
           state.items = state.items.filter(
-            (product) => product.id !== id
+            (cartItem) => cartItem.id !== id
           );
         }
       }
