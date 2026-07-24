@@ -3,47 +3,37 @@ import "./AboutUs.css";
 
 function AboutUs() {
   return (
-    <section className="about-container">
-      <div className="about-overlay">
+    <div className="about-container">
+      <div className="about-content">
         <h1>About Paradise Nursery</h1>
 
         <p>
-          Welcome to <strong>Paradise Nursery</strong>, where nature meets
-          beauty. We are passionate about providing high-quality indoor and
-          outdoor plants that bring freshness, positivity, and elegance to every
-          home and workspace.
+          Welcome to <strong>Paradise Nursery</strong>, your trusted destination
+          for beautiful indoor and outdoor plants. We believe that plants bring
+          life, freshness, and positivity into every home and workplace.
         </p>
 
         <p>
-          Our collection includes flowering plants, succulents, air-purifying
-          plants, herbs, bonsai, and decorative pots carefully selected to suit
-          every lifestyle. Whether you're a beginner or an experienced gardener,
-          we have the perfect plants for you.
+          Our mission is to make gardening simple and enjoyable by providing
+          healthy plants, quality gardening products, and excellent customer
+          service. Whether you are a beginner or an experienced plant lover, we
+          have a wide variety of plants to suit your needs.
         </p>
 
         <p>
-          At Paradise Nursery, customer satisfaction is our highest priority.
-          We are committed to offering healthy plants, affordable prices,
-          secure shopping, and fast delivery so you can create your own green
-          paradise.
+          At Paradise Nursery, every plant is carefully selected to ensure the
+          highest quality. We offer a collection of flowering plants, indoor
+          plants, succulents, air-purifying plants, and decorative pots to help
+          you create a greener environment.
         </p>
 
-        <h2>Why Choose Us?</h2>
-
-        <ul>
-          <li>Premium quality healthy plants</li>
-          <li>Wide variety of indoor and outdoor plants</li>
-          <li>Fast and reliable delivery</li>
-          <li>Affordable prices</li>
-          <li>Excellent customer support</li>
-        </ul>
-
         <p>
-          Thank you for choosing Paradise Nursery. Together, let's make the
-          world greener—one plant at a time.
+          Thank you for choosing Paradise Nursery. We are committed to helping
+          you grow a healthier, greener, and happier lifestyle—one plant at a
+          time.
         </p>
       </div>
-    </section>
+    </div>
   );
 }
 
